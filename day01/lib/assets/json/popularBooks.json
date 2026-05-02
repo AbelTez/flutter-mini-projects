@@ -1,0 +1,44 @@
+[
+  {
+    "rating": 4.5,
+    "title": "The Great Gatsby",
+    "text": "A classic novel that explores themes of wealth, love, and the American Dream in the 1920s.",
+    "img": "lib/assets/images/book1.jpg",
+    "audio": "voice1.mp3"
+  },
+  {
+    "rating": 4.0,
+    "title": "To Kill a Mockingbird",
+    "text": "A powerful story about racial injustice and moral growth in the American South.",
+    "img": "lib/assets/images/book2.jpg",
+    "audio": "voice2.mp3"
+  },
+  {
+    "rating": 4.8,
+    "title": "1984",
+    "text": "A dystopian novel that delves into themes of totalitarianism, surveillance, and individuality.",
+    "img": "lib/assets/images/book3.jpg",
+    "audio": "voice3.mp3"
+  },
+  {
+    "rating": 4.3,
+    "title": "Pride and Prejudice",
+    "text": "A romantic novel that explores themes of love, class, and social expectations in 19th-century England.",
+    "img": "lib/assets/images/book4.jpg",
+    "audio": "voice4.mp3"
+  },
+  {
+    "rating": 4.7,
+    "title": "The Catcher in the Rye",
+    "text": "A coming-of-age novel that captures the struggles of adolescence and the search for identity.",
+    "img": "lib/assets/images/book5.jpg",
+    "audio": "voice5.mp3"
+  },
+  {
+    "rating": 4.6,
+    "title": "The Lord of the Rings",
+    "text": "An epic fantasy trilogy that follows the quest to destroy a powerful ring and save Middle-earth from darkness.",
+    "img": "lib/assets/images/book6.jpg",
+    "audio": "voice6.mp3"
+  }
+]
