@@ -15,6 +15,8 @@ class EventDetailBackground extends StatelessWidget {
       child: Image(
         image: AssetImage(event.imagePath),
         width: screenWidth,
+        color: Color(0x99000000),
+        colorBlendMode: BlendMode.darken,
         height: screenHeight * 0.5,
         fit: BoxFit.cover,
       ),
@@ -25,13 +27,19 @@ class EventDetailBackground extends StatelessWidget {
 class ImageClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    final path = Path();
-    Offset curveStartPoint = Offset(0, size.height * 0.85);
-    Offset curveEndPoint = Offset(size.width, size.height * 0.85);
-    path.lineTo(curveStartPoint.dx, curveStartPoint.dy);
+    Path path = Path();
+    Offset curveStartPoint = Offset(0, size.height * 0.1);
+    Offset curveEndPoint = Offset(size.width, size.height * 0.95);
+    path.lineTo(curveStartPoint.dx, curveStartPoint.dy - 5);
     path.quadraticBezierTo(
-      size.width / 2,
-      size.height,
+      size.width * 0.2,
+      size.height * 0.85,
+      curveEndPoint.dx - 60,
+      curveEndPoint.dy + 5,
+    );
+    path.quadraticBezierTo(
+      size.width * 0.99,
+      size.height * 0.99,
       curveEndPoint.dx,
       curveEndPoint.dy,
     );

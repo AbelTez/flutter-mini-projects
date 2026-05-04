@@ -13,7 +13,12 @@ class EventDetailPage extends StatelessWidget {
     return Scaffold(
       body: Provider<Event>.value(
         value: event,
-        child: Stack(children: [EventDetailBackground(), EventDetailContent()]),
+        child: Stack(
+          children: [
+            EventDetailBackground(),
+            EventDetailContent()
+          ],
+        ),
       ),
     );
   }

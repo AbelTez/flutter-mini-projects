@@ -20,9 +20,7 @@ class Event {
     required this.categoryIds,
     this.galleryImages = const [],
   });
-  
 }
-
 
 final fiveKmRunEvent = Event(
   imagePath: 'assets/images/5km01.jpg',
@@ -86,11 +84,7 @@ final golfCompetition = Event(
   punchline1: 'Perfect your swing under pressure.',
   punchline2: 'Register early, limited slots.',
   categoryIds: [0, 3],
-  galleryImages: const [
-    'assets/images/golf01.jpg',
-    'assets/images/golf02.jpg',
-    'assets/images/golf03.jpg',
-  ],
+ 
 );
 
 final events = [fiveKmRunEvent, cookingEvent, musicConcert, golfCompetition];
