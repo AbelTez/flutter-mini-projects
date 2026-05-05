@@ -1,0 +1,26 @@
+[
+  {
+    "placeImage": "assets/images/5km01.jpg",
+    "placeName": "The Hawkers",
+    "placeItems": ["Nasi Lemak", "Roti Canai", "Teh Tarik"],
+    "minOrder": 20
+  },
+  {
+    "placeImage": "assets/images/guest1.jpg",
+    "placeName": "The Food Court",
+    "placeItems": ["Nasi Goreng", "Mee Goreng", "Teh O Ais"],
+    "minOrder": 15
+  },
+  {
+    "placeImage": "assets/images/golf01.jpg",
+    "placeName": "The Street Food",
+    "placeItems": ["Satay", "Laksa", "Air Mata Kucing"],
+    "minOrder": 10
+  },
+  {
+    "placeImage": "assets/images/concert01.jpg",
+    "placeName": "The Local Deli",
+    "placeItems": ["Char Kway Teow", "Hokkien Mee", "Air Bandung"],
+    "minOrder": 25
+  }
+]
