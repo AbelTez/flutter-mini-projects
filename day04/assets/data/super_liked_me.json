@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Super Liked Me",
+    "imageUrl": "assets/images/guest2.jpg",
+    "isActive": true,
+    "location": "New York, NY",
+    "age": 28,
+    "rating": 4.5
+  },
+  {
+    "name": "Jane Doe",
+    "imageUrl": "assets/images/guest3.jpg",
+    "isActive": false,
+    "location": "Los Angeles, CA",
+    "age": 25,
+    "rating": 4.0
+  },
+  {
+    "name": "John Smith",
+    "imageUrl": "assets/images/guest4.jpg",
+    "isActive": true,
+    "location": "Chicago, IL",
+    "age": 30,
+    "rating": 4.2
+  },
+  {
+    "name": "Emily Davis",
+    "imageUrl": "assets/images/guest5.jpg",
+    "isActive": false,
+    "location": "Miami, FL",
+    "age": 27,
+    "rating": 4.8
+  },
+  {
+    "name": "Michael Brown",
+    "imageUrl": "assets/images/guest6.jpg",
+    "isActive": true,
+    "location": "Seattle, WA",
+    "age": 32,
+    "rating": 4.3
+  }
+]
