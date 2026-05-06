@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:day04/commons/my_info.dart';
 import 'package:day04/commons/opaque_image.dart';
 import 'package:day04/commons/profile_info_big_card.dart';
