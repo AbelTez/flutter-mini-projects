@@ -1,6 +1,6 @@
 import 'package:day05/pages/auth/signup_screen.dart';
+import 'package:day05/pages/screen/onboarding_screen.dart';
 import 'package:day05/service/auth_service.dart';
-import 'package:day05/validator/auth_validator.dart';
 import 'package:day05/widget/my_button.dart';
 import 'package:day05/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -19,34 +19,32 @@ class _LoginScreenState extends State<LoginScreen> {
   final authService = AuthService();
   bool isLoading = false;
 
-  void _signUp() async {
+  void _login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
     //String phone = phoneController.text.trim();
 
-    //validate inputs
-    if (!validateAndSignup(context, email, password)) {
-      return;
-    }
+    //validate inputs latter if needed
+    if(!mounted)return;
+    
     setState(() {
       isLoading = true;
     });
-    final result = await authService.signup(email, password);
+    final result = await authService.login(email, password);
     if (result != null) {
       //success case
       setState(() {
         isLoading = false;
       });
-      showSnackBar(context, "Signup successful");
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const LoginScreen()),
+        MaterialPageRoute(builder: (_) => const OnboardingScreen()),
       );
     } else {
       setState(() {
         isLoading = false;
       });
-      showSnackBar(context, "Signup failed: $result");
+      showSnackBar(context, "Signin failed: $result");
     }
   }
 
@@ -163,7 +161,10 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 width: double.infinity,
                 height: 55,
-                child: MyButton(onTap: () {}, buttonText: "Sign In"),
+                child: isLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : MyButton(onTap: (  
+                    ) {_login();}, buttonText: "Log In"),
               ),
               SizedBox(height: 20),
               //signup button

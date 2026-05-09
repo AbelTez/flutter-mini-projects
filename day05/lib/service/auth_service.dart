@@ -25,7 +25,7 @@ class AuthService {
 
   //signin method
 
-  Future<String?> signin(String email, String password) async {
+  Future<String?> login(String email, String password) async {
     try {
       final response = await supabase.auth.signInWithPassword(
         password: password,
@@ -34,7 +34,7 @@ class AuthService {
       if (response.user != null) {
         return response.user?.id; // indicates sign in is successful
       }
-      return "invalid email od password";
+      return "invalid email or password";
     } on AuthException catch (e) {
       return e.message;
     } catch (e) {
