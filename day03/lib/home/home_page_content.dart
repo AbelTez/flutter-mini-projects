@@ -122,14 +122,14 @@ class _HomePageContentState extends State<HomePageContent> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        place.placeName ?? "",
+                        place.placeName,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        "Min Order: ${place.minOrder ?? ""}",
+                        "Min Order: ${place.minOrder}",
                         style: TextStyle(fontSize: 16, color: Colors.grey),
                       ),
                     ],
