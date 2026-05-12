@@ -33,17 +33,20 @@ class _SignupScreenState extends State<SignupScreen> {
       isLoading = true;
     });
     final result = await authService.signup(email, password);
-    if (result != null) {
-      //success case
+    if (!mounted) return;
+
+    if (result == null) {
+      //success case - signup was successful
       setState(() {
         isLoading = false;
       });
-      showSnackBar(context, "Signup successful");
+      showSnackBar(context, "Signup successful! Please log in.");
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const LoginScreen()),
       );
     } else {
+      //error case - result contains error message
       setState(() {
         isLoading = false;
       });

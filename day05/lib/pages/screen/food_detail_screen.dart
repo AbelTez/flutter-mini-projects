@@ -1,6 +1,9 @@
 import 'package:day05/models/product_model.dart';
 import 'package:day05/util/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:day05/provider/favourite_provider.dart';
 
 class FoodDetailScreen extends StatefulWidget {
   final FoodModel foodModel;
@@ -323,26 +326,39 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
       ),
 
       actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 20),
-          child: GestureDetector(
-            onTap: () {},
+        Consumer(
+          builder: (context, ref, child) {
+            final favoritesNotifier = ref.watch(favoriteProvider);
+            final productId =
+                widget.foodModel.id ?? widget.foodModel.name ?? '';
+            final isFavorite = favoritesNotifier.isFavorite(productId);
 
-            child: Container(
-              margin: const EdgeInsets.all(8),
-              padding: const EdgeInsets.all(8),
+            return Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: GestureDetector(
+                onTap: () {
+                  favoritesNotifier.toggleFavorite(productId);
+                },
 
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
+                child: Container(
+                  margin: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
+
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+
+                  child: Icon(
+                    isFavorite
+                        ? Icons.favorite_rounded
+                        : Icons.favorite_border_rounded,
+                    color: isFavorite ? Colors.red : Colors.black,
+                  ),
+                ),
               ),
-
-              child: const Icon(
-                Icons.favorite_border_rounded,
-                color: Colors.black,
-              ),
-            ),
-          ),
+            );
+          },
         ),
       ],
     );

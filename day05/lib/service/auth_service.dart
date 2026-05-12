@@ -13,9 +13,9 @@ class AuthService {
         email: email,
       );
       if (response.user != null) {
-        return response.user?.id; // indicates sign up is successful
+        return null; // null indicates sign up is successful
       }
-      return "something went wrong";
+      return "Something went wrong during signup";
     } on AuthException catch (e) {
       return e.message;
     } catch (e) {
@@ -32,9 +32,9 @@ class AuthService {
         email: email,
       );
       if (response.user != null) {
-        return response.user?.id; // indicates sign in is successful
+        return null; // null indicates sign in is successful
       }
-      return "invalid email or password";
+      return "Invalid email or password";
     } on AuthException catch (e) {
       return e.message;
     } catch (e) {

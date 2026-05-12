@@ -4,6 +4,7 @@ import 'package:day05/service/auth_service.dart';
 import 'package:day05/widget/my_button.dart';
 import 'package:day05/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,26 +26,27 @@ class _LoginScreenState extends State<LoginScreen> {
     //String phone = phoneController.text.trim();
 
     //validate inputs latter if needed
-    if(!mounted)return;
-    
+    if (!mounted) return;
+
     setState(() {
       isLoading = true;
     });
     final result = await authService.login(email, password);
-    if (result != null) {
-      //success case
-      setState(() {
-        isLoading = false;
-      });
+    if (!mounted) return;
+
+    setState(() {
+      isLoading = false;
+    });
+
+    if (result == null) {
+      // Login successful
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const OnboardingScreen()),
       );
     } else {
-      setState(() {
-        isLoading = false;
-      });
-      showSnackBar(context, "Signin failed: $result");
+      // Login failed - result contains error message
+      showSnackBar(context, "Login failed: $result");
     }
   }
 
@@ -163,8 +165,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 55,
                 child: isLoading
                     ? Center(child: CircularProgressIndicator())
-                    : MyButton(onTap: (  
-                    ) {_login();}, buttonText: "Log In"),
+                    : MyButton(
+                        onTap: () {
+                          _login();
+                        },
+                        buttonText: "Log In",
+                      ),
               ),
               SizedBox(height: 20),
               //signup button
