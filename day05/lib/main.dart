@@ -9,9 +9,7 @@ Future<void> main() async {
   await Supabase.initialize(
     url: 'https://mjgloqfgegynzxdludmo.supabase.co',
     anonKey: 'sb_publishable_cQPTpqim5ozr2FIeQWTg3w_6p6NdBU2',
-    authOptions: const FlutterAuthClientOptions(
-      autoRefreshToken: true,
-    ),
+    authOptions: const FlutterAuthClientOptions(autoRefreshToken: true),
   );
 
   runApp(const MyApp());
@@ -29,58 +27,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AuthCheck extends StatefulWidget {
+class AuthCheck extends StatelessWidget {
   const AuthCheck({super.key});
 
   @override
-  State<AuthCheck> createState() => _AuthCheckState();
-}
-
-class _AuthCheckState extends State<AuthCheck> {
-  final supabase = Supabase.instance.client;
-
-  // Initialize immediately
-  late final Future<void> _sessionFuture = _restoreSession();
-  Future<void> _restoreSession() async {
-    try {
-      final session = supabase.auth.currentSession;
-
-      // Refresh existing session
-      if (session != null) {
-        await supabase.auth.refreshSession();
-      }
-    } catch (e) {
-      debugPrint("Session restore error: $e");
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return FutureBuilder<void>(
-      future: _sessionFuture,
+    final supabase = Supabase.instance.client;
+
+    return StreamBuilder<AuthState>(
+      stream: supabase.auth.onAuthStateChange,
       builder: (context, snapshot) {
-        // Loading screen
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
+        final session = supabase.auth.currentSession;
+
+        if (session != null) {
+          return const AppMainScreen();
+        } else {
+          return const LoginScreen();
         }
-
-        // Listen for auth state changes
-        return StreamBuilder<AuthState>(
-          stream: supabase.auth.onAuthStateChange,
-          builder: (context, authSnapshot) {
-            final session = supabase.auth.currentSession;
-
-            // Logged in
-            if (session != null) {
-              return const AppMainScreen();
-            }
-
-            // Not logged in
-            return const LoginScreen();
-          },
-        );
       },
     );
   }
